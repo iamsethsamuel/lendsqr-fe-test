@@ -1,0 +1,139 @@
+@font-face {
+    font-family: "AvenirNext";
+    src: url("/fonts/AvenirNextLTPro-Bold.woff2") format("woff2"),
+        url("/fonts/AvenirNextLTPro-It.woff2") format("woff2"),
+        url("/fonts/AvenirNextLTPro-Regular.woff2") format("woff2");
+}
+
+:root {
+    font-family: "AvenirNext";
+}
+
+body {
+    font-family: "AvenirNext";
+}
+
+@media (max-width: 320px) {
+    /* This code will only be applied to devices with a width of 320px or less */
+}
+
+@media (min-width: 321px) and (max-width: 767px) {
+    /* This code will only be applied to devices with a width of 321px to 767px */
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    /* This code will only be applied to devices with a width of 768px to 1023px */
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+    /* This code will only be applied to devices with a width of 1024px to 1439px */
+}
+
+@media (min-width: 1440px) {
+    /* This code will only be applied to devices with a width of 1440px or more */
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+
+.flex-start {
+  justify-content: flex-start;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.center {
+  justify-content: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.align-items-flex-start {
+  align-items: flex-start;
+}
+
+.align-items-flex-end {
+  align-items: flex-end;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-stretch {
+  align-items: stretch;
+}
+
+.align-items-baseline {
+  align-items: baseline;
+}
+
+
+@each $i in (1 2 3 4 5 6 7 8 9 10) {
+    .m-#{$i} {
+        margin: #{$i}rem;
+    }
+    .min-#{$i} {
+        margin-inline: #{$i}rem;
+    }
+    .mbl-#{$i} {
+        margin-bottom: #{$i}rem;
+    }
+
+    .mb-#{$i} {
+        margin-bottom: #{$i}rem;
+    }
+    .mt-#{$i} {
+        margin-top: #{$i}rem;
+    }
+    .mr-#{$i} {
+        margin-right: #{$i}rem;
+    }
+    .ml-#{$i} {
+        margin-left: #{$i}rem;
+    }
+    .p-#{$i} {
+        padding: #{$i}rem;
+    }
+    .mb-#{$i} {
+        padding-bottom: #{$i}rem;
+    }
+    .pt-#{$i} {
+        padding-top: #{$i}rem;
+    }
+    .pr-#{$i} {
+        padding-right: #{$i}rem;
+    }
+    .pl-#{$i} {
+        padding-bottom: #{$i}rem;
+    }
+    .pin-#{$i} {
+        padding-inline: #{$i}rem;
+    }
+    .pbl-#{$i} {
+        padding-block: #{$i}rem;
+    }
+}
