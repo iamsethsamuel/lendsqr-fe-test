@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type UserType = {
     createdAt: string;
     orgName: string;
@@ -40,3 +42,4 @@ export type UserType = {
     };
     id: "1";
 };
+

@@ -1,18 +1,58 @@
+@use "sass:string";
+
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 @font-face {
     font-family: "AvenirNext";
-    src: url("/fonts/AvenirNextLTPro-Bold.woff2") format("woff2"),
-        url("/fonts/AvenirNextLTPro-It.woff2") format("woff2"),
-        url("/fonts/AvenirNextLTPro-Regular.woff2") format("woff2");
+    src: url("/fonts/AvenirNextLTPro-Regular.woff2") format("woff2"),
+        url("/fonts/AvenirNextLTPro-Bold.woff2") format("woff2"), url("/fonts/AvenirNextLTPro-It.woff2") format("woff2");
+    font-weight: normal;
 }
+
+p {
+    margin: unset;
+}
+
+$primary-color: #213f7d;
+$secondary-color: #39cdcc;
+$terriary-color: rgb(84, 95, 125);
 
 :root {
     font-family: "AvenirNext";
+    font-weight: 100;
+}
+
+.primary-color {
+    color: $primary-color;
+}
+
+.secondary-color {
+    color: $secondary-color;
+}
+
+.primary-bg-color {
+    color: $primary-color;
+}
+
+.secondary-bg-color {
+    color: $secondary-color;
+}
+
+.terriary-color {
+    color: $terriary-color;
 }
 
 body {
     font-family: "AvenirNext";
+    font-size: 20px;
+    font-weight: 400;
 }
 
+.title {
+    font-size: 40px;
+    font-weight: bolder;
+    color: #213f7d;
+}
 @media (max-width: 320px) {
     /* This code will only be applied to devices with a width of 320px or less */
 }
@@ -50,47 +90,45 @@ body {
     flex-direction: row;
 }
 
-
 .flex-start {
-  justify-content: flex-start;
+    justify-content: flex-start;
 }
 
 .flex-end {
-  justify-content: flex-end;
+    justify-content: flex-end;
 }
 
 .center {
-  justify-content: center;
+    justify-content: center;
 }
 
 .space-between {
-  justify-content: space-between;
+    justify-content: space-between;
 }
 
 .space-around {
-  justify-content: space-around;
+    justify-content: space-around;
 }
 
 .align-items-flex-start {
-  align-items: flex-start;
+    align-items: flex-start;
 }
 
 .align-items-flex-end {
-  align-items: flex-end;
+    align-items: flex-end;
 }
 
 .align-items-center {
-  align-items: center;
+    align-items: center;
 }
 
 .align-items-stretch {
-  align-items: stretch;
+    align-items: stretch;
 }
 
 .align-items-baseline {
-  align-items: baseline;
+    align-items: baseline;
 }
-
 
 @each $i in (1 2 3 4 5 6 7 8 9 10) {
     .m-#{$i} {
@@ -118,6 +156,7 @@ body {
     .p-#{$i} {
         padding: #{$i}rem;
     }
+
     .mb-#{$i} {
         padding-bottom: #{$i}rem;
     }
@@ -128,6 +167,9 @@ body {
         padding-right: #{$i}rem;
     }
     .pl-#{$i} {
+        padding-left: #{$i}rem;
+    }
+    .pb-#{$i} {
         padding-bottom: #{$i}rem;
     }
     .pin-#{$i} {
@@ -135,5 +177,156 @@ body {
     }
     .pbl-#{$i} {
         padding-block: #{$i}rem;
+    }
+    .br-#{$i} {
+        border-radius: #{$i}rem;
+    }
+}
+
+@each $i in (0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100) {
+}
+
+@each $i in (0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100) {
+    .t-#{$i} {
+        top: #{$i}#{"%"};
+    }
+    .b-#{$i} {
+        bottom: #{$i}#{"%"};
+    }
+    .l-#{$i} {
+        left: #{$i}#{"%"};
+    }
+    .r-#{$i} {
+        right: #{$i}#{"%"};
+    }
+    .w-#{$i} {
+        width: #{$i}#{"%"};
+    }
+    .h-#{$i} {
+        height: #{$i}#{"%"};
+    }
+    .gap-#{$i} {
+        gap: #{$i}#{"%"};
+    }
+}
+
+.absolute {
+    position: absolute;
+}
+
+.relative {
+    position: relative;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.h-fit {
+    height: fit-content;
+}
+
+.w-fit {
+    width: fit-content;
+}
+
+.b-danger {
+    border: 2px solid salmon !important;
+}
+
+.bg-white {
+    background-color: white;
+}
+.shadow-gray {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.bg-black {
+    background-color: rgb(27, 27, 27);
+}
+
+.white {
+    color: white;
+}
+
+.vp-h {
+    height: 100vh;
+}
+
+.vp-w {
+    width: 100vw;
+}
+
+.scroll-x {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    &::-webkit-scrollbar {
+        opacity: 0;
+        width: 8px;
+        display: none;
+    }
+
+    /* Show the scrollbar on hover */
+    &:hover::-webkit-scrollbar {
+        opacity: 1;
+        transition: opacity display;
+        display: block;
+    }
+
+    /* Track style */
+    &::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+    }
+
+    /* Thumb style */
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border-radius: 4px;
+        opacity: 0;
+    }
+
+    /* Thumb on hover */
+    &:hover::-webkit-scrollbar-thumb {
+        background-color: #555;
+        transition: background-color #555;
+    }
+}
+.scroll-y {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* Hide the scrollbar by default */
+    &::-webkit-scrollbar {
+        opacity: 0;
+        width: 8px;
+        display: none;
+    }
+
+    /* Show the scrollbar on hover */
+    &:hover::-webkit-scrollbar {
+        opacity: 1;
+        transition: opacity display;
+        display: block;
+    }
+
+    /* Track style */
+    &::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+    }
+
+    /* Thumb style */
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border-radius: 4px;
+        opacity: 0;
+    }
+
+    /* Thumb on hover */
+    &:hover::-webkit-scrollbar-thumb {
+        background-color: #555;
+        transition: background-color #555;
     }
 }
