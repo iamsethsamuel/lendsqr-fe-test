@@ -4,7 +4,7 @@ import InputField from "../components/input/InputField";
 import Button from "../components/button/Button";
 import { UserType } from "../utils/types";
 import { AppContext } from "../App";
-import { useIsDesktop } from "../utils/utils";
+import { useMediaQuery } from "../utils/utils";
 
 function Login() {
     const [type, setType] = useState<"password" | "text">("password");
@@ -14,7 +14,7 @@ function Login() {
     const [password, setPassword] = useState<string>();
     const context = useContext(AppContext);
     const [users, setUsers] = useState<UserType[]>();
-    const isDesktop = useIsDesktop();
+    const isDesktop = useMediaQuery();
 
     useEffect(() => {
         document.title = "Lensqr | Login";

@@ -3,6 +3,8 @@ import { UserType } from "./utils/types";
 import { useNavigate, useRoutes } from "react-router-dom";
 import SnackBar from "./components/snackbar/SnackBar";
 import Drawer from "./components/drawer/Drawer";
+import NavBar from "./components/navbar/NavBar";
+import PageWrapper from "./components/PageWrapper";
 
 type AppContextType = {
     showSnackBar: (msg: string) => void;
@@ -151,9 +153,9 @@ function App(props: AppType) {
                 closeSnackBar: handleCloseSnackBar,
                 handleUserChange: addUserToDatabase,
             }}>
-            {props.children}
+            {user ? <PageWrapper>{props.children}</PageWrapper> : props.children}
             <SnackBar open={message.length > 0} message={message} onClose={handleCloseSnackBar} />
-            {user && <Drawer />}
+            {user && <NavBar />}
         </AppProvider>
     );
 }
