@@ -5,7 +5,7 @@ function PageWrapper({ children }: { children: ReactNode }) {
     const isDesktop = useMediaQuery();
 
     return (
-        <div className={`${isDesktop ? "ml-12 mt-10" : "mt-4"} `}>
+        <div className={`${isDesktop ? "ml-12 mt-8" : "mt-4"} `}>
             {children}
         </div>
     );

@@ -51,7 +51,7 @@ function NavBar() {
                                 <img height="20px" width="20px" className=" pl-2" src="icons/menu.png" alt="logo" />
                             </Button>
                             <Button variant="text" to="/">
-                                <img height="20px" width="70px" className=" pl-1" src="img/logo.png" alt="logo" />
+                                <img height="20px" width="90px" className=" pl-1" src="img/logo.png" alt="logo" />
                             </Button>
                         </>
                     )}

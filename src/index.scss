@@ -1,4 +1,5 @@
 @use "sass:string";
+@use "sass:color";
 
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
@@ -44,35 +45,16 @@ $terriary-color: rgb(84, 95, 125);
 
 body {
     font-family: "AvenirNext";
-    // font-size: 20px;
+    font-size: 12px;
     font-weight: 400;
     color: $primary-color;
-    background-color: #e5e5e5;
+    // background-color: ;
 }
 
 .title {
     font-size: 40px;
     font-weight: bolder;
     color: #213f7d;
-}
-@media (max-width: 320px) {
-    /* This code will only be applied to devices with a width of 320px or less */
-}
-
-@media (min-width: 321px) and (max-width: 767px) {
-    /* This code will only be applied to devices with a width of 321px to 767px */
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-    /* This code will only be applied to devices with a width of 768px to 1023px */
-}
-
-@media (min-width: 1024px) and (max-width: 1439px) {
-    /* This code will only be applied to devices with a width of 1024px to 1439px */
-}
-
-@media (min-width: 1440px) {
-    /* This code will only be applied to devices with a width of 1440px or more */
 }
 
 .flex {
@@ -112,6 +94,9 @@ body {
     justify-content: space-around;
 }
 
+.space-evenly {
+    justify-content: space-evenly;
+}
 .align-items-flex-start {
     align-items: flex-start;
 }
@@ -140,7 +125,7 @@ body {
         margin-inline: #{$i}rem;
     }
     .mbl-#{$i} {
-        margin-bottom: #{$i}rem;
+        margin-block: #{$i}rem;
     }
 
     .mb-#{$i} {
@@ -267,7 +252,7 @@ body {
 }
 
 .scroll-x {
-    overflow-x: hidden;
+    overflow-x: scroll;
     overflow-y: hidden;
     &::-webkit-scrollbar {
         opacity: 0;
@@ -278,6 +263,7 @@ body {
     /* Show the scrollbar on hover */
     &:hover::-webkit-scrollbar {
         opacity: 1;
+        height: 1px;
         transition: opacity display;
         display: block;
     }
@@ -350,4 +336,42 @@ body {
 
 .d-none {
     display: none;
+}
+
+.divider {
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 1px;
+    width: 100%;
+}
+
+.inactive {
+    color: $primary-color;
+    font-weight: 200;
+    padding: 10px;
+    background-color: rgba(#545f7d, 0.1);
+    border-radius: 10rem;
+}
+
+.pending {
+    color: #e9b200;
+    font-weight: 400;
+    padding: 10px;
+    background-color: rgba(#e9b200, 0.05);
+    border-radius: 10rem;
+}
+
+.blacklisted {
+    color: #e4033b;
+    font-weight: 400;
+    padding: 10px;
+    background-color: rgba(#e4033b, 0.05);
+    border-radius: 10rem;
+}
+
+.active {
+    color: #39cd62;
+    font-weight: 400;
+    padding: 10px;
+    background-color: rgba(#39cd62, 0.05);
+    border-radius: 10rem;
 }

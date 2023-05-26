@@ -9,11 +9,11 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 function InputField(props: InputFieldProps) {
     return (
-        <div className={props.className + " relative "} style={{ height: "3em" }}>
+        <div className={props.className + " relative "} style={{ height: "40px", ...props.style }}>
             <input
                 placeholder={props.placeholder}
                 className={`absolute ${props.validated !== null && props.validated === false ? "b-danger" : ""}`}
-                style={{ top: 0, left: 0, zIndex: 0 }}
+                style={{ top: 0, left: 0, zIndex: 0, height: "40px", ...props.style }}
                 {...props}
             />
 

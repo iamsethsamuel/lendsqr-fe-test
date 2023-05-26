@@ -8,6 +8,12 @@ type MenuItemChildrenTypeType = {
     path?: string;
 };
 
+type UsersStatsType = {
+    icon: string;
+    title: string;
+    value: string;
+};
+
 export const menuItems: MenuItemType[] = [
     {
         title: "CUSTOMERS",
@@ -45,4 +51,26 @@ export const menuItems: MenuItemType[] = [
             { title: "Audit Logs", icon: "icons/clipboard-list 1.png" },
         ],
     },
+];
+
+export const userStats: UsersStatsType[] = [
+    { title: "Users", icon: "icons/p_users.png", value: "2,453" },
+    { title: "Active Users", icon: "icons/b_users.png", value: "2,453" },
+    { title: "Users with Loans", icon: "icons/inventory.png", value: "12,453" },
+    { title: "Users with Savings", icon: "icons/coins.png", value: "102,453" },
+];
+
+type TableDropDownType = {
+    name: string;
+    placeHolder?: string;
+    icon?: string;
+};
+
+export const tableDropDown: TableDropDownType[] = [
+    { name: "Organization", placeHolder: "Select ", icon: "icons/dropdown.png" },
+    { name: "Username", placeHolder: "User" },
+    { name: "Email", placeHolder: "Email " },
+    { name: "Date", placeHolder: "Date ", icon: "icons/Calendar.png" },
+    { name: "Phone Number", placeHolder: "Phone Number " },
+    { name: "Status", placeHolder: "Select ", icon: "icons/dropdown.png" },
 ];

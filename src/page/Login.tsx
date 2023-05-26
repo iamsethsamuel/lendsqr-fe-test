@@ -13,24 +13,11 @@ function Login() {
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
     const context = useContext(AppContext);
-    const [users, setUsers] = useState<UserType[]>();
+    const users = context.users;
     const isDesktop = useMediaQuery();
 
     useEffect(() => {
         document.title = "Lensqr | Login";
-        fetch("https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users")
-            .then((res) => {
-                res.json()
-                    .then((data) => {
-                        setUsers(data);
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    });
-            })
-            .catch((err) => {
-                console.log(err);
-            });
     }, []);
 
     const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -78,33 +65,41 @@ function Login() {
         <div className={isDesktop ? "p-5" : "p-1"}>
             <img src="img/logo.png" className="mb-5" />
             <Grid container className="space-between row">
-                {isDesktop && <img src="img/pablo-sign-in 1.png" />}
+                {isDesktop && <img src="img/pablo-sign-in 1.png" className="w-100"/>}
                 <Grid container className={`flex-column w-100 ${isDesktop ? "pin-7" : ""}`}>
                     <div>
-                        <p className="title pb-1">Welcome</p>
-                        <p className="terriary-color pb-4">Enter details to login.</p>
+                        <p className="title pb-1" style={{ fontSize: "40px" }}>
+                            Welcome
+                        </p>
+                        <p className="terriary-color pb-4" style={{ fontSize: "20px" }}>
+                            Enter details to login.
+                        </p>
                     </div>
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
                             handleFormSubmit();
                         }}>
-                        <InputField
-                            placeholder="Email"
-                            onChange={handleEmailChange}
-                            className="mbl-1 w-100"
-                            validated={!email ? undefined : emailValidated}
-                            onBlur={handleEmailUnfocus}
-                            value={email}
-                        />
+                        <div className="mb-1">
+                            <InputField
+                                placeholder="Email"
+                                onChange={handleEmailChange}
+                                className="w-100"
+                                validated={!email ? undefined : emailValidated}
+                                onBlur={handleEmailUnfocus}
+                                value={email}
+                                style={{ height: "50px" }}
+                            />
+                        </div>
                         <InputField
                             placeholder="Password"
                             onChange={handlePasswordChange}
-                            className="w-100"
+                            className="w-100 "
                             type={type}
                             value={password}
                             validated={!password ? undefined : passwordValidated}
                             onBlur={handlePasswordUnfocus}
+                            style={{ height: "50px" }}
                             suffix={
                                 <Button variant="text" type="button" onClick={handleTypeChange}>
                                     SHOW

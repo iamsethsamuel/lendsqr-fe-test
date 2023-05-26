@@ -2,7 +2,6 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 import { UserType } from "./utils/types";
 import { useNavigate, useRoutes } from "react-router-dom";
 import SnackBar from "./components/snackbar/SnackBar";
-import Drawer from "./components/drawer/Drawer";
 import NavBar from "./components/navbar/NavBar";
 import PageWrapper from "./components/PageWrapper";
 
@@ -10,6 +9,7 @@ type AppContextType = {
     showSnackBar: (msg: string) => void;
     closeSnackBar: () => void;
     user?: UserType;
+    users: UserType[];
     db?: IDBDatabase;
     handleUserChange: (user: UserType) => void;
 };
@@ -28,6 +28,7 @@ export const AppContext = createContext<AppContextType>({
             /*init */
         }
     },
+    users: [],
 });
 const AppProvider = AppContext.Provider;
 
@@ -37,17 +38,39 @@ type AppType = {
 
 function App(props: AppType) {
     const [user, setUser] = useState<UserType>();
+    const [users, setUsers] = useState<UserType[]>([]);
     const [db, setDb] = useState<IDBDatabase>();
     const [message, setSnackBarMsg] = useState<string>("");
     const navigate = useNavigate();
 
     useEffect(() => {
         openDatabase();
+        fetch("https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users")
+            .then((res) => {
+                res.json()
+                    .then((data) => {
+                        setUsers(data);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }, []);
 
     useEffect(() => {
         getUserFromDatabase(localStorage.getItem("userId")?.toString() || "");
     }, [db]);
+
+    useEffect(() => {
+        if (user) {
+            document.body.style.setProperty("background-color", "#e5e5e5");
+        } else {
+            document.body.style.setProperty("background-color", "white");
+        }
+    }, [user]);
 
     const openDatabase = () => {
         const request = indexedDB.open("myDB", 1);
@@ -92,7 +115,7 @@ function App(props: AppType) {
             setUser(user);
 
             console.log("User added to the database with ID:", id);
-            navigate("/");
+            navigate("/users");
         };
 
         addRequest.onerror = (event) => {
@@ -147,6 +170,7 @@ function App(props: AppType) {
     return (
         <AppProvider
             value={{
+                users: users,
                 user: user,
                 db: db,
                 showSnackBar: handleSnackBarMsg,
