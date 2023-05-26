@@ -6,6 +6,7 @@ import App from "./App";
 import DashBoard from "./page/Dashboard";
 import Login from "./page/Login";
 import UsersPage from "./page/Users";
+import UserProfile from "./page/UserProfile";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,14 @@ const router = createBrowserRouter([
         element: (
             <App>
                 <UsersPage />
+            </App>
+        ),
+    },
+    {
+        path: "/profile",
+        element: (
+            <App>
+                <UserProfile />
             </App>
         ),
     },

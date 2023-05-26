@@ -2,7 +2,6 @@ import { ChangeEvent, useContext, useEffect, useState } from "react";
 import Grid from "../components/grid/Grid";
 import InputField from "../components/input/InputField";
 import Button from "../components/button/Button";
-import { UserType } from "../utils/types";
 import { AppContext } from "../App";
 import { useMediaQuery } from "../utils/utils";
 

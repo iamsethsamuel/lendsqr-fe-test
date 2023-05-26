@@ -41,7 +41,7 @@ function NavBar() {
         <div
             className={` fixed t-0 ${
                 isDesktop ? "l-10 pl-10" : "l-0 "
-            }  h-fit flex space-between bg-white w-100 scroll-x pt-1  `}>
+            }  h-fit flex space-between bg-white w-100 scroll-x pt-1  `} style={{zIndex: 1000}}>
             {showDrawer && <Drawer ref={dropDownRef} />}
             {!isDesktop && (
                 <div className="h-fit">
@@ -91,7 +91,7 @@ function NavBar() {
                             src={context.user?.profile.avatar}
                             alt={context.user?.userName}
                         />
-                        <Button variant="text" className="pl-1 primary-color bold" style={{ fontSize: "14px" }}>
+                        <Button variant="text" to="/profile" className="pl-1 primary-color bold" style={{ fontSize: "14px" }}>
                             {context.user?.userName} &#9660;
                         </Button>
                     </div>
@@ -127,6 +127,7 @@ function NavBar() {
                             </Button>
                         </div>
                         <div className="primary-color bold pt-1">Notification</div>
+                        <Button variant="text" to="/profile" className="primary-color bold mt-1">Profile</Button>
                     </DropDown>
                 </div>
             )}

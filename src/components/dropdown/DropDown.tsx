@@ -33,11 +33,12 @@ function DropDown(props: DropDownType) {
         return () => {
             document.removeEventListener("click", handleOutsideClick);
         };
-    }, [open, props.target]);
+    }, [open, props.target, calculatePosition, props]);
 
     if (!open) {
         return null;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     function calculatePosition() {
         if (props.target.current && dropdownRef.current) {
             const targetRect = props.target.current.getBoundingClientRect();

@@ -49,6 +49,7 @@ export const menuItems: MenuItemType[] = [
             { title: "Preferences", icon: "icons/sliders-h 1.png" },
             { title: "Fees and Pricing", icon: "icons/badge-percent 1.png" },
             { title: "Audit Logs", icon: "icons/clipboard-list 1.png" },
+            { title: "Systems Messages", icon: "icons/tire 1.png" },
         ],
     },
 ];

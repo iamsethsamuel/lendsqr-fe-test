@@ -11,7 +11,6 @@ function UsersPage() {
     const [pos, setPos] = useState({ start: 0, end: 10 });
     const [users, setUsers] = useState(context.users.slice(pos.start, pos.end));
     const usersLength = useRef(context.users.length);
-    const totalPages = Math.ceil(context.users.length / 10);
 
     useEffect(() => {
         setUsers(context.users.slice(0, 10));
@@ -23,22 +22,22 @@ function UsersPage() {
         const amount = Number(amt);
 
         if (amount < 100) {
-            return <div className="active">Active</div>;
+            return <div className="active br-10">Active</div>;
         }
 
         if (amount < 300) {
-            return <div className="pending">Pending</div>;
+            return <div className="pending br-10">Pending</div>;
         }
 
         if (amount < 500) {
-            return <div className="inactive">Inactive</div>;
+            return <div className="inactive br-10">Inactive</div>;
         }
 
-        return <div className="blacklisted">Blacklisted</div>;
+        return <div className="blacklisted br-10">Blacklisted</div>;
     };
 
     return (
-        <div className={`${isDesktop ? "ml-10 mt-5" : "mt-5"}`}>
+        <div className="f-work-sans">
             <p style={{ fontSize: "24px" }} className="primary-text bold">
                 Users
             </p>
@@ -51,7 +50,9 @@ function UsersPage() {
                         key={stats.title}
                         style={{ width: isDesktop ? "18%" : "81%" }}>
                         <img width="40px" src={stats.icon} alt={stats.title} />
-                        <p className="primary-text mt-1">{stats.title}</p>
+                        <p className="primary-text mt-1" style={{ color: "#545F7D" }}>
+                            {stats.title}
+                        </p>
                         <p className="primary-text mt-1 bolder">{stats.value}</p>
                     </div>
                 ))}
@@ -94,7 +95,7 @@ function UsersPage() {
                     </Button>
                     <span>out of {context.users.length}</span>
                 </div>
-                <div className={`${isDesktop?"": "mt-2"}`}>
+                <div className={`${isDesktop ? "" : "mt-2"}`}>
                     {pos.start > 0 && (
                         <Button
                             variant="contained"

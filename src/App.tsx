@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { UserType } from "./utils/types";
-import { useNavigate, useRoutes } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import SnackBar from "./components/snackbar/SnackBar";
 import NavBar from "./components/navbar/NavBar";
 import PageWrapper from "./components/PageWrapper";
@@ -12,13 +12,14 @@ type AppContextType = {
     users: UserType[];
     db?: IDBDatabase;
     handleUserChange: (user: UserType) => void;
+    logout: () => void;
 };
 
 export const AppContext = createContext<AppContextType>({
-    handleUserChange: (_) => {
+    handleUserChange: () => {
         /*init */
     },
-    showSnackBar: (_) => {
+    showSnackBar: () => {
         {
             /*init */
         }
@@ -29,6 +30,9 @@ export const AppContext = createContext<AppContextType>({
         }
     },
     users: [],
+    logout: () => {
+        /*init */
+    },
 });
 const AppProvider = AppContext.Provider;
 
@@ -62,7 +66,8 @@ function App(props: AppType) {
 
     useEffect(() => {
         getUserFromDatabase(localStorage.getItem("userId")?.toString() || "");
-    }, [db]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [db, ]);
 
     useEffect(() => {
         if (user) {
@@ -167,6 +172,36 @@ function App(props: AppType) {
         setSnackBarMsg("");
     };
 
+    const deleteUserFromDatabase = (id: string) => {
+        console.log("Logout")
+        if (!db) {
+            console.error("Database connection not available");
+            return;
+        }
+
+        const transaction = db.transaction("users", "readwrite");
+        const objectStore = transaction.objectStore("users");
+
+        const deleteRequest = objectStore.delete(id);
+
+        deleteRequest.onsuccess = () => {
+            navigate("/login")
+            console.log("User deleted from the database");
+        };
+
+        deleteRequest.onerror = (event) => {
+            //@ts-ignore
+            console.error("Error deleting user from the database:", event.target.error);
+        };
+    };
+
+    const logout = () => {
+        if (user && user.id) {
+            deleteUserFromDatabase(user.id);
+        }
+        setUser(undefined);
+    };
+
     return (
         <AppProvider
             value={{
@@ -176,6 +211,7 @@ function App(props: AppType) {
                 showSnackBar: handleSnackBarMsg,
                 closeSnackBar: handleCloseSnackBar,
                 handleUserChange: addUserToDatabase,
+                logout: logout,
             }}>
             {user ? <PageWrapper>{props.children}</PageWrapper> : props.children}
             <SnackBar open={message.length > 0} message={message} onClose={handleCloseSnackBar} />

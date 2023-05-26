@@ -1,8 +1,10 @@
+import { AppContext } from "../../App";
 import { menuItems } from "../../utils/data";
 import Button from "../button/Button";
-import React, { forwardRef } from "react";
+import React, { forwardRef, useContext } from "react";
 
 const Drawer = forwardRef<HTMLDivElement>((props, ref) => {
+    const { logout } = useContext(AppContext);
     return (
         <div ref={ref} className="fixed t-0 l-0 bg-white vp-h w-fit scroll-y row flex w-fit">
             <div className="flex-1 relative">
@@ -39,6 +41,13 @@ const Drawer = forwardRef<HTMLDivElement>((props, ref) => {
                             ))}
                         </div>
                     ))}
+                    <div className="divider mbl-2" />
+
+                    <Button variant="text" className="mb-1 min-2 flex center" onClick={logout}>
+                        <img height="" src="icons/sign-out 1.png" alt="logout" />
+                        <span className="pin-1 terriary-color"> Logout</span>
+                    </Button>
+                    <p className="min-2 mb-1 mt-1">v1.2.0</p>
                 </div>
             </div>
         </div>

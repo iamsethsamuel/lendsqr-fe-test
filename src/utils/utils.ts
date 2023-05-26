@@ -15,7 +15,7 @@ export const useMediaQuery = (query?: string) => {
                 setIsDesktop(media.matches);
             });
         };
-    }, []);
+    }, [query]);
 
     return isDesktop;
 };
