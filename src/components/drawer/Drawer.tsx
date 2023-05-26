@@ -1,9 +1,9 @@
 import { AppContext } from "../../App";
 import { menuItems } from "../../utils/data";
 import Button from "../button/Button";
-import React, { forwardRef, useContext } from "react";
+import { forwardRef, useContext } from "react";
 
-const Drawer = forwardRef<HTMLDivElement>((props, ref) => {
+const Drawer = forwardRef<HTMLDivElement>((_props, ref) => {
     const { logout } = useContext(AppContext);
     return (
         <div ref={ref} className="fixed t-0 l-0 bg-white vp-h w-fit scroll-y row flex w-fit">

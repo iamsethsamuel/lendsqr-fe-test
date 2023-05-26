@@ -1,7 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
-import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter } from "react-router-dom";
+import {  RouterProvider,  createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import DashBoard from "./page/Dashboard";
 import Login from "./page/Login";
@@ -42,21 +42,6 @@ const router = createBrowserRouter([
         ),
     },
 ]);
-
-export const TestRouter = ({ children, path }: { children: ReactNode; path: string }) => {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route>
-                    <App>
-                        <DashBoard />
-                    </App>
-                </Route>
-                {children}
-            </Routes>
-        </BrowserRouter>
-    );
-};
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>

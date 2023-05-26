@@ -38,6 +38,6 @@ export type UserType = {
         monthlyIncome: string[];
         loanRepayment: string;
     };
-    id: "1";
+    id: string;
 };
 
