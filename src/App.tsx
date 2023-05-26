@@ -34,7 +34,7 @@ export const AppContext = createContext<AppContextType>({
         /*init */
     },
 });
-const AppProvider = AppContext.Provider;
+export const AppProvider = AppContext.Provider;
 
 type AppType = {
     children: ReactNode;
@@ -173,7 +173,6 @@ function App(props: AppType) {
     };
 
     const deleteUserFromDatabase = (id: string) => {
-        console.log("Logout")
         if (!db) {
             console.error("Database connection not available");
             return;

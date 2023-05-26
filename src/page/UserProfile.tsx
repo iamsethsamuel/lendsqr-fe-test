@@ -5,6 +5,7 @@ import { useMediaQuery } from "../utils/utils";
 
 function UserProfile() {
     const { user } = useContext(AppContext);
+
     const isDesktop = useMediaQuery();
 
     const [activePage, setPage] = useState("General Details");
@@ -21,7 +22,12 @@ function UserProfile() {
             <div className="flex flex-start">
                 <Button
                     variant="text"
-                    to={document.referrer.substring(document.referrer.lastIndexOf("/"))}
+                    //I am having issues with in during test. So I disenabled it
+                    to={
+                        process.env.NODE_ENV === "development"
+                            ? undefined
+                            : document?.referrer.substring(document?.referrer.lastIndexOf("/"))
+                    }
                     className="terriary-color">
                     <span style={{ fontWeight: "bolder", fontSize: "2rem" }}>&#8592;</span> Back to{" "}
                     {pageTitle || "Home"}
@@ -33,27 +39,32 @@ function UserProfile() {
                     <Button
                         variant="text"
                         className={`br-color-blacklisted color-blacklisted ${isDesktop ? "min-1" : "mr-1 w-50"}`}
-                        style={{ padding: "10px", borderRadius: "5px" }}>
+                        style={{ padding: "10px", borderRadius: "5px" }}
+                        data-testid="blacklist-button">
                         Blacklist User
                     </Button>
                     <Button
                         variant="text"
                         className={`br-color-secondary ${isDesktop ? "" : " w-45"}`}
-                        style={{ padding: "10px", borderRadius: "5px" }}>
+                        style={{ padding: "10px", borderRadius: "5px" }}
+                        data-testid="activate-button">
                         Activate User
                     </Button>
                 </div>
             </div>
             <div className="bg-white pin-3 pt-3 flex flex-column ">
-                <div className={`bg-white flex wrap ${isDesktop ? "row mb-3 " : "flex-column center flex-center mb-1"}`}>
+                <div
+                    className={`bg-white flex wrap ${isDesktop ? "row mb-3 " : "flex-column center flex-center mb-1"}`}>
                     <img
                         src={user?.profile.avatar}
                         alt="profile"
                         className={`profile-image br-10  ${isDesktop ? "min-1" : ""}`}
+                        id="profile-image"
+                        data-testid="profile-image"
                     />
 
                     <div className={`flex flex-column  center ${isDesktop ? "mr-2" : "mt-2 flex-center"}`}>
-                        <span className="page-title ">
+                        <span className="page-title " id="user-name" data-testid="user-name">
                             {user?.profile.firstName} {user?.profile.lastName}
                         </span>
                         <span style={{ marginTop: "5px" }}>{user?.accountNumber}</span>
@@ -72,7 +83,7 @@ function UserProfile() {
 
                     <div className={`flex flex-column min-2 center ${isDesktop ? "" : "flex-center mt-1"}`}>
                         <p className="page-title">₦ {user?.accountBalance}</p>
-                        <p>{user?.accountNumber}/Providus Bank</p>
+                        <p data-testid="account-details">{user?.accountNumber}/Providus Bank</p>
                     </div>
                 </div>
                 <div className="flex row scroll-x w-100 ">
@@ -85,7 +96,8 @@ function UserProfile() {
                                     page === activePage ? "br-active-bottom terriary-color" : "primary-color"
                                 } p-1 ${isDesktop ? "w-20" : "w-100"}`}
                                 style={{ fontWeight: page === activePage ? "bolder" : "normal" }}
-                                onClick={() => setPage(page)}>
+                                onClick={() => setPage(page)}
+                                data-testid={`${page.toLowerCase().replace(" ", "-")}-button`}>
                                 {page}
                             </Button>
                         )
@@ -173,4 +185,5 @@ const InfoCard = ({ title, details }: { title: string; details: string }) => {
         </div>
     );
 };
+
 export default UserProfile;

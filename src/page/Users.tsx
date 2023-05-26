@@ -115,6 +115,7 @@ function UsersPage() {
                         <Button
                             variant="text"
                             key={num}
+                            id={`page-${num}`}
                             className="primary-color"
                             onClick={() => {
                                 setPos({ start: num * 10, end: num * 10 + 10 });
@@ -129,6 +130,7 @@ function UsersPage() {
                     ...
                     {[8, 9, 10].map((num) => (
                         <Button
+                            id={`next-${num}`}
                             variant="text"
                             className="primary-color"
                             onClick={() => {
@@ -144,6 +146,7 @@ function UsersPage() {
                     ))}
                     {pos.end < usersLength.current && (
                         <Button
+                            id="next"
                             variant="contained"
                             className="btn-faded primary-color bold mr-2"
                             onClick={() =>

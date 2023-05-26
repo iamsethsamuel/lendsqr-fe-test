@@ -19,6 +19,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "__test__/Login.cy.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

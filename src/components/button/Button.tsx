@@ -18,7 +18,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonType>((props, ref) => {
                 //@ts-ignore
                 forwardedRef={forwardedRef}
                 className={`btn-${variant} relative ${className}`}
-                {...rest}>
+                {...rest}
+                >
                 {children}
             </CustomLink>
         );

@@ -8,7 +8,7 @@ type SnackBarType = {
 function SnackBar({ open, onClose, message }: SnackBarType) {
 
     return open ? (
-        <div className="fixed b-1 r-0 l-0 flex center   w-100">
+        <div id="snackbar" className="fixed b-1 r-0 l-0 flex center   w-100">
             <div
                 className="bg-black shadow-gray br-1 white flex space-between"
                 style={{ paddingInline: "2rem", paddingBlock: "10px", gap: "2em" }}>
